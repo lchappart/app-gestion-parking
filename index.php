@@ -18,6 +18,8 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
                 require "Controller/$componentName.php";
             }
         }
+    } else if (isset($_GET['component']) && $_GET['component'] === 'createUser') {
+        require 'Controller/createUser.php';
     } else {
         require "Controller/login.php";
     }
@@ -29,14 +31,10 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
 <!DOCTYPE>
 <html lang="fr">
 <head>
+    <link rel="stylesheet" href="Assets/CSS/style.css">
     <title>Projet Fullstack</title>
-    <link rel="stylesheet" href="./Includes/font_awesome/css/fontawesome.css"/>
-    <link rel="stylesheet" href="./Includes/font_awesome/css/solid.css"/>
-    <link rel="stylesheet" href="./Includes/leaflet/leaflet.css">
-    <link rel="stylesheet" href="./Includes/autoComplete/dist/css/autoComplete.css">
 </head>
 <body>
-<div class="container">
     <?php
     if (isset($_SESSION['auth'])) {
         require '_partials/navbar.php';
@@ -46,10 +44,10 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
                 require "Controller/$componentName.php";
             }
         }
+    } else if (isset($_GET['component']) && $_GET['component'] === 'createUser') {
+        require 'Controller/createUser.php';
     } else {
         require 'Controller/login.php';
     }
     ?>
-</div>
-<script src="./Includes/autoComplete/dist/autoComplete.min.js"></script>
 </body>
