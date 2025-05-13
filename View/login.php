@@ -7,7 +7,7 @@
     <p>Pas de compte ?</p><a href="index.php?component=createUser">Créer un compte</a>
     <script src="Assets/JS/Services/login.js" type="module"></script>
 </form>
-
+<script type="module" src="./Assets/JS/Services/login.js"></script>
 <script type="module">
     import { login } from "./Assets/JS/Services/login.js";
     document.addEventListener("DOMContentLoaded", () => {
