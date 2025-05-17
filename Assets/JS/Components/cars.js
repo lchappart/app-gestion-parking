@@ -1,5 +1,4 @@
 export const fillCarsContainer = (carsContainer, carsResult) => {
-    console.log(carsContainer);
     carsContainer.innerHTML = '';
     for (let i = 0; i < carsResult.length; i++) {
         const car = carsResult[i];

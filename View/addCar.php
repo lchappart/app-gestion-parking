@@ -1,7 +1,7 @@
 <form class="form-container" id="add-car-form">
     <label for="vehicle-type-select">Type de véhicule</label>
     <select required id="vehicle-type-select" class="input">
-      <option disabled <?php echo isset($car) ? 'selected' : ''; ?>>Type de voiture</option>
+      <option disabled <?php echo isset($car) ? '' : 'selected'; ?>>Type de voiture</option>
       <option value="car" <?php echo isset($car) && $car['type'] == 'car' ? 'selected' : ''; ?>>Voiture</option>
       <option value="electric-car" <?php echo isset($car) && $car['type'] == 'electric-car' ? 'selected' : ''; ?>>Voiture électrique</option>
       <option value="motorcycle" <?php echo isset($car) && $car['type'] == 'motorcycle' ? 'selected' : ''; ?>>Moto</option>
@@ -37,6 +37,7 @@
                 } else {
                     alert("Une erreur est survenue lors de l'ajout de votre véhicule");
                 }
+                window.location.href = "index.php?component=cars";
             })
         }
         if (editVehicleButton) {
@@ -49,7 +50,7 @@
                 const vehicleType = document.querySelector("#vehicle-type-select").value;
                 const carModel = document.querySelector("#car-model-input").value;
                 const vehicleImmatriculation = document.querySelector("#vehicle-immatrticulation-input").value;
-                const addCarResult = await editCar(vehicleType, carModel, vehicleImmatriculation, <?php echo $car['id']; ?>);
+                const addCarResult = await editCar(vehicleType, carModel, vehicleImmatriculation, <?php echo isset($car) ? $car['id'] : ''; ?>);
                 if (addCarResult.success) {
                     alert("Votre véhicule a été modifié avec succès");
                 } else {
