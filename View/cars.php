@@ -21,13 +21,12 @@
     import { fillCarsContainer } from './Assets/JS/Components/cars.js';
     import { deleteCar } from './Assets/JS/Services/cars.js';
     document.addEventListener('DOMContentLoaded', async () => {
-
-
         const addActionsListeners = () => {
             const editCars = document.querySelectorAll('.edit-car');
             const deleteCars = document.querySelectorAll('.delete-car');
             for (let i = 0; i < editCars.length; i++) {
                 editCars[i].addEventListener('click', (e) => {
+                    e.preventDefault();
                     window.location.href = `index.php?component=addCar&action=edit&id=${e.target.dataset.id}`;
                 });
             }
