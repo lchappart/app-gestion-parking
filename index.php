@@ -29,10 +29,10 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
 }
 ?>
 
-<!DOCTYPE>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <base href="<?php echo $basePath; ?>">
+        <base href="<?php echo $basePath; ?>">
     <link rel="stylesheet" href="Assets/CSS/style.css">
     <title>Projet Fullstack</title>
 </head>

@@ -5,6 +5,12 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
     strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
     header('Content-Type: application/json');
     
+    if (isset($_GET['action']) && $_GET['action'] == 'list') {
+        $reservations = getReservations($pdo);
+        echo json_encode($reservations);
+        exit();
+    }
+
     if (!isset($_POST['reservationDate']) || !isset($_POST['reservationStartTime']) || 
         !isset($_POST['reservationEndTime']) || !isset($_POST['vehicleSelect'])) {
         echo json_encode(['success' => false, 'message' => 'Veuillez remplir tous les champs']);

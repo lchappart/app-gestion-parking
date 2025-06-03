@@ -13,3 +13,9 @@ function deleteCar(PDO $pdo, int $id) {
     $query->execute();
 }
 
+function getAllCars(PDO $pdo) {
+    $query = $pdo->prepare('SELECT * FROM `vehicles`');
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+

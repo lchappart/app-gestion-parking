@@ -16,6 +16,11 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
         echo json_encode(['success' => true]);
         exit();
     }
+    if ($_GET['action'] == 'list') {
+        $cars = getAllCars($pdo, $_SESSION['user_id']);
+        echo json_encode($cars);
+        exit();
+    }
 }
 
 require "View/cars.php";

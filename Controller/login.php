@@ -23,7 +23,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
             $_SESSION['auth'] = true;
             $_SESSION['username'] = $user['username'];
             $_SESSION['user_id'] = $user['id'];
-
+            $_SESSION['role'] = $user['role'];
             echo json_encode(['authentication' => true]);
             exit();
         } else {

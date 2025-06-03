@@ -2,6 +2,9 @@
     <div class="navbar-container">
         <a href="index.php?component=home" class="navbar-logo">Park'Heure</a>
         <ul class="navbar-menu">
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+                echo '<li><a href="dashboard">Tableau de bord</a></li>';
+            } ?>
             <li><a href="home">Accueil</a></li>
             <li><a href="reserve">Réserver une place</a></li>
             <li><a href="contact">Contact</a></li>

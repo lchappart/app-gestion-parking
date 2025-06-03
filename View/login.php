@@ -23,7 +23,7 @@
 
             const loginResult = await login(loginUsernameInput.value, loginPasswordInput.value);
             if (loginResult.authentication === true) {
-                window.location.href = 'index.php?component=home';
+                window.location.href = 'home';
             } else if (loginResult.errors) {
                 alert(loginResult.errors.join('\n'));
             }
