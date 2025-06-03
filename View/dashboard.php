@@ -1,6 +1,8 @@
 <select name="dashboard-select" id="dasboard-select">
     <option value="users">Utilisateurs</option>
-    <option value="posts">Posts</option>
+    <option value="places">Places</option>
+    <option value="cars">Véhicules</option>
+    <option value="reserve">Réservations</option>
 </select>
 <div id="table-container"></div>
 <script type="module" src="./Assets/JS/Components/dashboard.js"></script>

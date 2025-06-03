@@ -43,3 +43,10 @@ function saveReservation($pdo, $userId, $vehicleSelect, $reservationDate, $start
     
     return $query->execute();
 }
+
+function getReservations($pdo) {
+    $query = $pdo->prepare("SELECT * FROM reservations");
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+

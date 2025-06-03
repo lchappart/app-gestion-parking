@@ -17,6 +17,18 @@ export const printTables = (data, tableContainer) => {
             td.textContent = data[i][columnNames[j]]
             tr.appendChild(td)
         }
+        const editButton = document.createElement('a')
+        editButton.textContent = 'Modifier'
+        editButton.addEventListener('click', () => {
+            alert('Modifier')
+        })
+        const deleteButton = document.createElement('a')
+        deleteButton.textContent = 'Supprimer'
+        deleteButton.addEventListener('click', () => {
+            alert('Supprimer')
+        })
+        tr.appendChild(editButton)
+        tr.appendChild(deleteButton)
         tbody.appendChild(tr)
     }
     table.appendChild(tbody)
