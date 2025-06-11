@@ -4,7 +4,14 @@ require "Model/reserve.php";
 if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
     strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
     header('Content-Type: application/json');
-    
+    $availablePlaces = getPlacesNumber($pdo);
+
+    if (isset($_GET['action']) && $_GET['action'] == 'getPrice') {
+        $price = getPriceByHours($pdo);
+        echo json_encode($price);
+        exit();
+    }
+
     if (isset($_GET['action']) && $_GET['action'] == 'list') {
         $reservations = getReservations($pdo);
         echo json_encode($reservations);
@@ -18,7 +25,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
     }
     
     $reservations = getReservationsAtDate($pdo, $_POST['reservationDate']);
-    if (count($reservations) >= 10) { // Pour 10 placces de parking
+    if (count($reservations) >= $availablePlaces) {
         echo json_encode(['success' => false, 'message' => 'Aucune place disponible à cette date']);
         exit();
     }

@@ -5,6 +5,11 @@
     <input type="time" class="input" id="reservation-start-time" name="reservation-start-time" required>
     <label for="reservation-end-time">Heure de fin</label>
     <input type="time" class="input" id="reservation-end-time" name="reservation-end-time" required>
+    <label for="place-type-select">Type de place</label>
+    <select name="placeType" id="place-type-select">
+        <option selected value="1">Standard</option>
+        <option value="0">Handicappée</option>
+    </select>
     <label for="vehicle-select">Véhicule</label>
     <select name="vehicle-select" class="input" id="vehicle-select" required>
         <option disabled selected value="">Séléctionnez votre véhicule</option>
@@ -17,8 +22,11 @@
 
 <script type="module" src="./Assets/JS/Services/reserve.js"></script>
 <script type="module">
-    import { reserve, getUsersVehicles, calculatePrice } from "./Assets/JS/Services/reserve.js";
+    import { reserve, getUsersVehicles, calculatePrice, getPriceByHour} from "./Assets/JS/Services/reserve.js";
     document.addEventListener("DOMContentLoaded", async () => {
+        const priceByHour = await getPriceByHour()
+        let selectedPrice = priceByHour[0].price_per_hour;
+        const placeTypeSelect = document.querySelector("#place-type-select");
         const vehicleSelect = document.querySelector("#vehicle-select");
         const usersVehicles = await getUsersVehicles();
         for (let i = 0; i < usersVehicles.length; i++) {
@@ -28,17 +36,22 @@
             vehicleSelect.appendChild(option);
         }
 
-        const reserveButton = document.getElementById("reserve-button");
         const startTimeInput = document.getElementById("reservation-start-time");
         const endTimeInput = document.getElementById("reservation-end-time");
         const priceDisplay = document.getElementById("price-display");
 
+        placeTypeSelect.addEventListener('change', async () => {
+            updatePrice()
+            const selectedType = placeTypeSelect.value
+            selectedPrice = priceByHour[selectedType].price_per_hour;
+        });
+
         const updatePrice = () => {
             if (startTimeInput.value && endTimeInput.value) {
-                const calculatedPrice = calculatePrice(startTimeInput.value, endTimeInput.value);
+                const calculatedPrice = calculatePrice(startTimeInput.value, endTimeInput.value, selectedPrice);
                 priceDisplay.textContent = calculatedPrice ? calculatedPrice : "0.00";
             }
-        };
+        }
 
         startTimeInput.addEventListener("change", updatePrice);
         endTimeInput.addEventListener("change", updatePrice);
@@ -66,8 +79,8 @@
                     }
 
                     reserve(reservationDate, reservationStartTime, reservationEndTime, vehicleSelect);
-                });
+                })
             }
         }).render('#paypal-button-container');
-    });
+    })
 </script>
