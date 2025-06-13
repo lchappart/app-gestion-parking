@@ -50,3 +50,13 @@ function getReservations($pdo) {
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getPlacesNumber($pdo) {
+    $query = $pdo->prepare("SELECT COUNT(*) as count FROM places");
+    $query->execute();
+    return $query->fetch(PDO::FETCH_ASSOC)['count'];
+}
+function getPriceByHours($pdo) {
+    $query = $pdo->prepare("SELECT * FROM tarifs");
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}

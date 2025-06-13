@@ -37,9 +37,23 @@ export const getUsersVehicles = async () => {
     return response.json();
 }
 
-export const calculatePrice = (startTime, endTime) => {
+export const calculatePrice = (startTime, endTime, price) => {
     const start = new Date(`1970-01-01T${startTime}`);
     const end = new Date(`1970-01-01T${endTime}`);
     const durationHours = (end - start) / 1000 / 60 / 60;
-    return (durationHours * 2.5).toFixed(2); // €2.50 per hour
+    let calculatedPrice = (durationHours * price).toFixed(2);
+    if (calculatedPrice < 0) {
+        calculatedPrice = calculatedPrice * -1 + 24 * price;
+        return calculatedPrice.toFixed(2);
+    }
+    return calculatedPrice;
+}
+
+export const getPriceByHour = async () => {
+    const response = await fetch('index.php?component=reserve&action=getPrice', {
+        method: 'GET',
+        headers : {'X-Requested-With': 'XMLHttpRequest'},
+
+    });
+    return response.json();
 }
