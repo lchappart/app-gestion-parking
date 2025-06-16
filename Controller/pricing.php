@@ -11,7 +11,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
         exit;
     }
     if (!empty($_GET['action']) && $_GET['action'] == 'edit') {
-        $pricing = editPricing($pdo, $_POST['pricing']);
+        $pricing = editPricing($pdo, $_POST['vehicleType'], $_POST['pricing']);
         echo json_encode($pricing);
         exit;
     }
