@@ -7,7 +7,7 @@
       <option value="motorcycle" <?php echo isset($car) && $car['type'] == 'motorcycle' ? 'selected' : ''; ?>>Moto</option>
       <option value="electric-motorcycle" <?php echo isset($car) && $car['type'] == 'electric-motorcycle' ? 'selected' : ''; ?>>Moto électrique</option>
     </select>
-    <label for="carModel">Modèle de la voiture</label>
+    <label for="carModel">Modèle du véhicule</label>
     <input required type="text" name="carModel" id="car-model-input" value="<?php echo isset($car) ? $car['model'] : ''; ?>">
     <label for="vehicle-immatrticulation-input">Immatriculation du véhicule</label>
     <input required type="text" class="input" placeholder="Entrez l'immatriculation du véhicule" id="vehicle-immatrticulation-input" value="<?php echo isset($car) ? $car['immatriculation'] : ''; ?>">

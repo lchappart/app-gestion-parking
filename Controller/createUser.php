@@ -32,6 +32,17 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
         echo json_encode(['errors' => ['Veuillez remplir tous les champs']]);
         exit();
     }
+    if (isset($_GET['action']) && $_GET['action'] == 'edit') {
+        $id = cleanString($_GET['id']);
+        $user = getUserById($pdo, $id);
+        if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['phoneNumber'])) {
+            $username = cleanString($_POST['username']);
+            $email = cleanString($_POST['email']);
+            $phoneNumber = cleanString($_POST['phoneNumber']);
+            updateUser($pdo, $id, $username, $email, $phoneNumber);
+            echo json_encode(['success' => true]);
+        }
+    }
 } else {
     require 'View/createUser.php';
 }

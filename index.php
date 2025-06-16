@@ -34,7 +34,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
 <head>
         <base href="<?php echo $basePath; ?>">
     <link rel="stylesheet" href="Assets/CSS/style.css">
-    <title>Projet Fullstack</title>
+    <title>Park'Heure</title>
 </head>
 <body>
     <?php
