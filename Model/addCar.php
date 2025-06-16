@@ -23,3 +23,9 @@ function editCar(PDO $pdo, string $vehicleType, string $vehicleImmatriculation, 
     $res->bindParam(":id", $id, PDO::PARAM_INT);
     $res->execute();
 }
+
+function deleteCar(PDO $pdo, string $id) {
+    $res = $pdo->prepare("DELETE FROM vehicles WHERE id = :id");
+    $res->bindParam(":id", $id, PDO::PARAM_INT);
+    $res->execute();
+}

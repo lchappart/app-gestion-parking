@@ -19,3 +19,10 @@ function getAllCars(PDO $pdo) {
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getCar(PDO $pdo, int $id) {
+    $query = $pdo->prepare('SELECT * FROM `vehicles` WHERE id = :id');
+    $query->bindParam(':id', $id);
+    $query->execute();
+    return $query->fetch(PDO::FETCH_ASSOC);
+}
+

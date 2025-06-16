@@ -4,10 +4,10 @@
         <ul class="navbar-menu">
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
                 echo '<li><a href="dashboard">Tableau de bord</a></li>';
+                echo '<li><a href="pricing">Tarifs</a></li>';
             } ?>
             <li><a href="home">Accueil</a></li>
             <li><a href="reserve">Réserver une place</a></li>
-            <li><a href="contact">Contact</a></li>
             <li><a href="profile">Mon profil</a></li>
         </ul>
     </div>

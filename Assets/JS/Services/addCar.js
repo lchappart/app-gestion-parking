@@ -1,5 +1,5 @@
 export const addCar = async (vehicleType, carModel, vehicleImmatriculation) => {
-    const response = await fetch('index.php?component=addCar', {
+    const response = await fetch('index.php?component=addCar&action=create', {
         method: 'POST',
         headers : {'X-Requested-With': 'XMLHttpRequest'},
         body: new URLSearchParams({
@@ -12,7 +12,7 @@ export const addCar = async (vehicleType, carModel, vehicleImmatriculation) => {
 }
 
 export const editCar = async (vehicleType, carModel, vehicleImmatriculation, id) => {
-    const response = await fetch('index.php?component=addCar', {
+    const response = await fetch('index.php?component=addCar&action=edit', {
         method: 'POST',
         headers : {'X-Requested-With': 'XMLHttpRequest'},
         body: new URLSearchParams({

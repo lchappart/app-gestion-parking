@@ -1,23 +1,20 @@
 <?php
-require "Model/places.php";
 
-/**
- * @var PDO $pdo
- */
+require "Model/pricing.php";
 
 if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
     strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
     header('Content-Type: application/json');
     if (!empty($_GET['action']) && $_GET['action'] == 'list') {
-        $places = getPlaces($pdo);
-        echo json_encode($places);
+        $pricing = getPricing($pdo);
+        echo json_encode($pricing);
         exit;
     }
     if (!empty($_GET['action']) && $_GET['action'] == 'edit') {
-        $place = getPlace($pdo);
-        echo json_encode($place);
+        $pricing = editPricing($pdo, $_POST['vehicleType'], $_POST['pricing']);
+        echo json_encode($pricing);
         exit;
     }
 }
 
-    require "View/places.php";
+require "View/pricing.php";
