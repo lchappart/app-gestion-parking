@@ -1,22 +1,43 @@
-<form action="index.php?component=reserve" method="post">
-    <label for="reservation-date">Entrez la date voulue</label>
-    <input type="date" class="input" id="reservation-date" name="reservation-date" required>
-    <label for="reservation-start-time">Heure de début</label>
-    <input type="time" class="input" id="reservation-start-time" name="reservation-start-time" required>
-    <label for="reservation-end-time">Heure de fin</label>
-    <input type="time" class="input" id="reservation-end-time" name="reservation-end-time" required>
-    <label for="place-type-select">Type de place</label>
-    <select name="placeType" id="place-type-select">
-        <option selected value="1">Standard</option>
-        <option value="0">Handicappée</option>
-    </select>
-    <label for="vehicle-select">Véhicule</label>
-    <select name="vehicle-select" class="input" id="vehicle-select" required>
-        <option disabled selected value="">Séléctionnez votre véhicule</option>
-    </select>
-    <p id="price-paragraph">Prix : <span id="price-display">0.00</span> €</p>
-    <div id="paypal-button-container"></div>
-</form>
+<div class="form-container reservation-container">
+    <h1>Réserver une place</h1>
+    <form action="index.php?component=reserve" method="post" class="reservation-form">
+        <div class="form-group">
+            <label for="reservation-date">Date de réservation</label>
+            <input required type="date" class="input" id="reservation-date" name="reservation-date">
+        </div>
+
+        <div class="form-group time-group">
+            <div class="time-input">
+                <label for="reservation-start-time">Heure de début</label>
+                <input required type="time" class="input" id="reservation-start-time" name="reservation-start-time">
+            </div>
+            <div class="time-input">
+                <label for="reservation-end-time">Heure de fin</label>
+                <input required type="time" class="input" id="reservation-end-time" name="reservation-end-time">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="place-type-select">Type de place</label>
+            <select name="placeType" id="place-type-select" class="input">
+                <option selected value="1">Standard</option>
+                <option value="0">Handicapée</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="vehicle-select">Véhicule</label>
+            <select name="vehicle-select" class="input" id="vehicle-select" required>
+                <option disabled selected value="">Sélectionnez votre véhicule</option>
+            </select>
+        </div>
+
+        <div class="price-display">
+            <p id="price-paragraph">Prix total : <span id="price-display" class="price">0.00</span> €</p>
+        </div>
+            <div id="paypal-button-container" class="paypal-container"></div>
+    </form>
+</div>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AST8MWJvkyetmYynNQt3vcRL6Q0UTuMNxLMV9rt_VdGtVQI8YkME-thCsQBUuiVjGOXsk0EoLqWSBOo1&currency=EUR"></script>
 
@@ -72,13 +93,13 @@
                     const reservationStartTime = document.getElementById("reservation-start-time").value;
                     const reservationEndTime = document.getElementById("reservation-end-time").value;
                     const vehicleSelect = document.getElementById("vehicle-select").value;
-
+                    const price = priceDisplay.textContent;
                     if (!reservationDate || !reservationStartTime || !reservationEndTime || !vehicleSelect) {
                         alert("Veuillez remplir tous les champs");
                         return;
                     }
 
-                    reserve(reservationDate, reservationStartTime, reservationEndTime, vehicleSelect);
+                    reserve(reservationDate, reservationStartTime, reservationEndTime, vehicleSelect, price);
                 })
             }
         }).render('#paypal-button-container');
