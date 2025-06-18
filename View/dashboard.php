@@ -3,6 +3,7 @@
     <div class="dashboard-controls">
         <label for="dasboard-select">Sélectionnez une catégorie</label>
         <select name="dashboard-select" id="dasboard-select" class="input">
+            <option selected disabled>Sélectionnez une catégorie</option>
             <option data-edit="createUser" value="users">Utilisateurs</option>
             <option value="places">Places</option>
             <option data-edit="addCar" value="cars">Véhicules</option>

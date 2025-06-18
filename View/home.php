@@ -3,9 +3,16 @@
         <div class="hero-content">
             <h1>Bienvenue sur Park'Heure</h1>
             <p class="hero-subtitle">La solution simple et efficace pour gérer vos places de parking</p>
-            <div class="hero-buttons">
-                <a href="reserve" class="button-primary">Réserver une place</a>
-            </div>
+            <?php if (isset($_SESSION['auth'])) { ?>
+                <div class="hero-buttons">
+                    <a href="reserve" class="button-primary">Réserver une place</a>
+                </div>
+            <?php } else {
+                echo '<div class="hero-buttons">
+                    <a href="login" class="button-primary">Connexion</a>
+                    <a href="createUser" class="button-primary">Inscription</a>
+                </div>';
+             } ?>
         </div>
     </section>
 
@@ -50,7 +57,7 @@
             <h2>Prêt à commencer ?</h2>
             <p>Rejoignez-nous dès maintenant et simplifiez la gestion de vos parkings</p>
             <div class="cta-buttons">
-                <a href="createUser.php" class="button-primary">Créer un compte</a>
+                <a href="createUser" class="button-primary">Créer un compte</a>
             </div>
         </div>
     </section>

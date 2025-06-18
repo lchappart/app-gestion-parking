@@ -38,18 +38,19 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
 </head>
 <body>
     <?php
-    if (isset($_SESSION['auth'])) {
-        require '_partials/navbar.php';
+    require '_partials/navbar.php';
+    if (isset($_SESSION['auth'])) { 
         if (isset($_GET['component'])) {
             $componentName = cleanString($_GET['component']);
             if (file_exists("Controller/$componentName.php")) {
                 require "Controller/$componentName.php";
             }
         }
-    } else if (isset($_GET['component']) && $_GET['component'] === 'createUser') {
-        require 'Controller/createUser.php';
+    } else if (isset($_GET['component']) && $_GET['component'] === 'createUser' || $_GET['component'] === 'login') {
+        require 'Controller/'.$_GET['component'].'.php';
     } else {
-        require 'Controller/login.php';
+        require 'Controller/home.php';
     }
     ?>
+    <?php require '_partials/footer.php'; ?>
 </body>
