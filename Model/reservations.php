@@ -6,3 +6,10 @@ function getReservationsByUser($pdo, $userId) {
     $query->execute();
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function cancelReservation($pdo, $id) {
+    $query = $pdo->prepare("UPDATE reservations SET status = 'canceled' WHERE id = :id");
+    $query->bindParam(':id', $id);
+    $query->execute();
+    return $query->rowCount();
+}

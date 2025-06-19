@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer un compte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Assets/CSS/style.css">
-</head>
-<body>
-    <?php include 'navbar.php'; ?>
-    
+  
     <form class="form-container">
         <h1>Créer un compte</h1>
         <label for="username-input">Nom d'utilisateur</label>
@@ -70,5 +59,3 @@
             }
         })
     </script>
-</body>
-</html>

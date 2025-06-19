@@ -9,5 +9,12 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
         echo json_encode($reservations);
         exit();
     }
+
+    if ($_GET['action'] === 'cancel') {
+        $id = cleanString($_GET['id']);
+        $reservation = cancelReservation($pdo, $id);
+        echo json_encode(['success' => $reservation > 0]);
+        exit();
+    }
 }
 require 'View/reservations.php';

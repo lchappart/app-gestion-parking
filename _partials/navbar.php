@@ -5,6 +5,7 @@
             <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
                 echo '<li><a href="dashboard">Tableau de bord</a></li>';
                 echo '<li><a href="pricing">Tarifs</a></li>';
+                echo '<li><a href="place">Ajouter une place</a></li>';
             } ?>
             <?php if (!isset($_SESSION['auth'])) {
                 echo '<li><a class="button-primary" href="login">Connexion</a></li>';

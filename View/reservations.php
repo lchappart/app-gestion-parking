@@ -15,10 +15,21 @@
 <script type="module" src="./Assets/JS/Services/reservations.js"></script>
 <script type="module" src="./Assets/JS/Components/reservations.js"></script>s
 <script type="module">
-    import { getReservations } from './Assets/JS/Services/reservations.js';
+    import { getReservations, cancelReservation } from './Assets/JS/Services/reservations.js';
     import { fillReservationsContainer } from './Assets/JS/Components/reservations.js';
     document.addEventListener("DOMContentLoaded", async() => {
         const reservations = await getReservations()
         fillReservationsContainer(reservations)
+        const cancelReservationButtons = document.querySelectorAll('.cancel-reservation-button');
+        cancelReservationButtons.forEach(button => {
+            button.addEventListener('click', async () => {
+                const result = await cancelReservation(button.dataset.id);
+                if (result.success) {
+                    alert('Réservation annulée avec succès');
+                    window.location.href = 'index.php?component=reservations';
+                    
+                }
+            });
+        });
     });
 </script>

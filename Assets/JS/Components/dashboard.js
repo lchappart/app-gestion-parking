@@ -1,5 +1,6 @@
 export const printTables = (data, tableContainer, selectValue) => {
     tableContainer.innerHTML = ''
+    let query = ''
     const table = document.createElement('table')
     const thead = document.createElement('thead')
     const tbody = document.createElement('tbody')
@@ -11,6 +12,11 @@ export const printTables = (data, tableContainer, selectValue) => {
     }
     table.appendChild(thead)
     for (let i = 0; i < data.length; i++) {
+        if (selectValue == 'places') {
+            query = `index.php?component=place&action=delete&id=${data[i].id}`
+        } else {
+            query = `${selectValue}?action=delete&id=${data[i].id}`
+        }
         const tr = document.createElement('tr')
         for (let j = 0; j < columnNames.length; j++) {
             const td = document.createElement('td')
@@ -48,8 +54,8 @@ export const printTables = (data, tableContainer, selectValue) => {
         deleteButton.textContent = 'Delete'
         deleteButton.addEventListener('click', async (e) => {
             e.preventDefault()
-            if (confirm('Voulez vous vraiment supprimer cet utilisateur ?')) {
-            const response = await fetch(`${selectValue}?action=delete&id=${data[i].id}`,
+            if (confirm('Voulez vous vraiment supprimer cette ligne ?')) {
+            const response = await fetch(query,
                 {
                     method: 'POST',
                     headers: {
