@@ -34,7 +34,6 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
                 throw new Exception('Veuillez remplir tous les champs');
             }
         } else {
-            // Gestion de la création d'utilisateur
             if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['confirmPassword']) && !empty($_POST['email']) && !empty($_POST['phoneNumber'])) {
                 
                 $username = cleanString($_POST['username']);
@@ -43,7 +42,6 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
                 $email = cleanString($_POST['email']);
                 $phoneNumber = cleanString($_POST['phoneNumber']);
                 
-                // Validation des données
                 if (strlen($username) < 3) {
                     throw new Exception('Le nom d\'utilisateur doit contenir au moins 3 caractères');
                 }
@@ -60,13 +58,11 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
                     throw new Exception('Les mots de passe ne correspondent pas');
                 }
                 
-                // Vérifier si l'utilisateur existe déjà
                 $existingUser = getUser($pdo, $username, $email, $phoneNumber);
                 if (!empty($existingUser)) {
                     throw new Exception('Un utilisateur avec ces informations existe déjà');
                 }
                 
-                // Créer l'utilisateur
                 date_default_timezone_set('Europe/Paris');
                 $date = date('Y-m-d H:i:s', time());
                 

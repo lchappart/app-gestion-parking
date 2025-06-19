@@ -9,6 +9,16 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
         $users = getUsers($pdo);
         echo json_encode($users);
     }
+    if (isset($_GET['action']) && $_GET['action'] == 'toggle_enabled') {
+        $res = toggleEnabledUser($pdo, $_GET['id']);
+        echo json_encode($res);
+        exit;
+    }
+    if (!empty($_GET['action']) && $_GET['action'] == 'delete') {
+        $res = deleteUser($pdo, $_GET['id']);
+        echo json_encode($res);
+        exit;
+    }
 }
 
 require "View/users.php";

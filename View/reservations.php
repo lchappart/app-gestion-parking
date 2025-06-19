@@ -19,7 +19,6 @@
     import { fillReservationsContainer } from './Assets/JS/Components/reservations.js';
     document.addEventListener("DOMContentLoaded", async() => {
         const reservations = await getReservations()
-        console.log(reservations)
         fillReservationsContainer(reservations)
     });
 </script>

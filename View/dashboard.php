@@ -4,9 +4,9 @@
         <label for="dasboard-select">Sélectionnez une catégorie</label>
         <select name="dashboard-select" id="dasboard-select" class="input">
             <option selected disabled>Sélectionnez une catégorie</option>
-            <option data-edit="createUser" value="users">Utilisateurs</option>
+            <option value="users">Utilisateurs</option>
             <option value="places">Places</option>
-            <option data-edit="addCar" value="cars">Véhicules</option>
+            <option value="cars">Véhicules</option>
             <option value="reserve">Réservations</option>
         </select>
     </div>
@@ -95,7 +95,7 @@
             const selectValue = select.value
             const selectedOption = select.options[select.selectedIndex]
             const values = await getValues(selectValue)
-            printTables(values, tableContainer, selectValue, selectedOption.getAttribute('data-edit'))
+            printTables(values, tableContainer, selectValue)
         })
     })
 </script>

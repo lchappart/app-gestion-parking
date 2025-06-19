@@ -52,13 +52,15 @@
         </div>
     </section>
 
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2>Prêt à commencer ?</h2>
-            <p>Rejoignez-nous dès maintenant et simplifiez la gestion de vos parkings</p>
-            <div class="cta-buttons">
-                <a href="createUser" class="button-primary">Créer un compte</a>
+    <?php if (!isset($_SESSION['auth'])) { ?>
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Prêt à commencer ?</h2>
+                <p>Rejoignez-nous dès maintenant et simplifiez la gestion de vos parkings</p>
+                <div class="cta-buttons">
+                    <a href="createUser" class="button-primary">Créer un compte</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php } ?>
 </div>

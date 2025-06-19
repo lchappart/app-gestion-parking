@@ -23,7 +23,7 @@
             <h3>Contact</h3>
             <ul>
                 <li><i class="fas fa-phone"></i> +33 1 23 45 67 89</li>
-                <li><i class="fas fa-envelope"></i> contact@parking-app.fr</li>
+                <li><i class="fas fa-envelope"></i> leo.chappart@parkheure.fr</li>
                 <li><i class="fas fa-map-marker-alt"></i> 123 Avenue des Parkings, Paris</li>
             </ul>
         </div>
@@ -31,6 +31,6 @@
 
     <!-- Copyright -->
     <div class="footer-bottom">
-        <p>&copy; <?php echo date('Y'); ?> App Gestion Parking. Tous droits réservés.</p>
+        <p>&copy; <?php echo date('Y'); ?> ParkHeure. Tous droits réservés.</p>
     </div>
 </footer>
