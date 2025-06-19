@@ -19,7 +19,7 @@ function createUser(PDO $pdo, string $username, string $pass, string $email, str
     try {
         $pdo->beginTransaction();
         
-        $query = 'INSERT INTO `users` (username, password, email, phone, role, status, created_at) VALUES (:username, :password, :email, :phoneNumber, :role, :status, :created_at)';
+        $query = 'INSERT INTO `users` (username, password, email, phone, role, enabled, created_at) VALUES (:username, :password, :email, :phoneNumber, :role, :status, :created_at)';
         
         $hashedPassword = password_hash($pass, PASSWORD_BCRYPT);
         $res = $pdo->prepare($query);

@@ -52,5 +52,6 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
         require 'Controller/home.php';
     }
     ?>
+    
     <?php require '_partials/footer.php'; ?>
 </body>

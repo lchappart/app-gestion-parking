@@ -1,8 +1,5 @@
-export const printTables = (data, tableContainer, selectValue, editFile) => {
+export const printTables = (data, tableContainer, selectValue) => {
     tableContainer.innerHTML = ''
-    if (editFile == null) {
-        editFile = 'selectValue'
-    }
     const table = document.createElement('table')
     const thead = document.createElement('thead')
     const tbody = document.createElement('tbody')
@@ -20,13 +17,53 @@ export const printTables = (data, tableContainer, selectValue, editFile) => {
             td.textContent = data[i][columnNames[j]]
             tr.appendChild(td)
         }
-        const editButton = document.createElement('a')
-        editButton.textContent = 'Edit'
-        editButton.setAttribute('href', `${editFile}?action=edit&id=${data[i].id}`)
+        const actionButton = document.createElement('a')
+        if (selectValue == 'users') {
+            const actionText = data[i].enabled == 1 ? 'Désactiver' : 'Activer'
+            actionButton.textContent = actionText
+            const id = data[i].id
+            actionButton.addEventListener('click', async (e) => {
+                e.preventDefault()
+                const response = await fetch(`${selectValue}?action=toggle_enabled&id=${id}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    }
+                )
+                const result = await response.json()
+                if (result.success) {
+                    actionButton.textContent = actionButton.textContent == 'Désactiver' ? 'Activer' : 'Désactiver'
+                    console.log(actionButton.textContent);
+                    
+                }
+            })
+        } else if (selectValue == 'places') {
+            actionButton.textContent = 'Modifier'
+            actionButton.setAttribute('href', `place?action=edit&id=${data[i].id}`)
+        } 
+      
         const deleteButton = document.createElement('a')
         deleteButton.textContent = 'Delete'
-        deleteButton.setAttribute('href', `${editFile}?action=delete&id=${data[i].id}`)
-        tr.appendChild(editButton)
+        deleteButton.addEventListener('click', async (e) => {
+            e.preventDefault()
+            if (confirm('Voulez vous vraiment supprimer cet utilisateur ?')) {
+            const response = await fetch(`${selectValue}?action=delete&id=${data[i].id}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                }
+            )
+            const result = await response.json()
+            if (result.success) {
+                    tr.remove()
+                }
+            }
+        })
+        tr.appendChild(actionButton)
         tr.appendChild(deleteButton)
         tbody.appendChild(tr)
     }
