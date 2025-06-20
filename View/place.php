@@ -9,7 +9,7 @@
             <select name="place-type" class="input" id="place-type">
                 <option disabled selected>Choisissez un type de place</option>
                 <option <?php echo isset($place) ? ($place['type'] == 'standard' ? 'selected' : '') : ''; ?> value="standard">Standard</option>
-                <option <?php echo isset($place) ? ($place['type'] == 'handicapped' ? 'selected' : '') : ''; ?> value="handicapped">Handicapée</option>
+                <option <?php echo isset($place) ? ($place['type'] == 'handicap' ? 'selected' : '') : ''; ?> value="handicap">Handicapée</option>
             </select>
         <button type="button" class="button-primary" id="<?php echo isset($place) ? 'edit-place-button' : 'add-place-button'; ?>"><?php echo isset($place) ? 'Modifier' : 'Ajouter'; ?></button>
     </form>
