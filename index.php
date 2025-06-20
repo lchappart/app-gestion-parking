@@ -45,8 +45,10 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
             if (file_exists("Controller/$componentName.php")) {
                 require "Controller/$componentName.php";
             }
+        } else {
+            require 'Controller/home.php';
         }
-    } else if (isset($_GET['component']) && $_GET['component'] === 'createUser' || $_GET['component'] === 'login') {
+    } else if (isset($_GET['component']) && ($_GET['component'] === 'createUser' || $_GET['component'] === 'login')) {
         require 'Controller/'.$_GET['component'].'.php';
     } else {
         require 'Controller/home.php';

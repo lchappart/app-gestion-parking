@@ -1,4 +1,4 @@
-<form class="form-container" id="add-car-form">
+<form data-car-id="<?php echo isset($car) ? $car['id'] : ''; ?>" class="form-container" id="add-car-form">
     <label for="vehicle-type-select">Type de véhicule</label>
     <select required id="vehicle-type-select" class="input">
       <option disabled <?php echo isset($car) ? '' : 'selected'; ?>>Type de voiture</option>
@@ -19,6 +19,7 @@
     import { addCar } from "./Assets/JS/Services/addCar.js";
     import { editCar } from "./Assets/JS/Services/addCar.js";
     document.addEventListener("DOMContentLoaded", () => {
+        const carId = document.querySelector("#add-car-form").getAttribute("data-car-id");
         const addVehicleButton = document.querySelector("#add-vehicle-button");
         const editVehicleButton = document.querySelector("#edit-vehicle-button");
         if (addVehicleButton) {
@@ -50,7 +51,7 @@
                 const vehicleType = document.querySelector("#vehicle-type-select").value;
                 const carModel = document.querySelector("#car-model-input").value;
                 const vehicleImmatriculation = document.querySelector("#vehicle-immatrticulation-input").value;
-                const addCarResult = await editCar(vehicleType, carModel, vehicleImmatriculation, <?php echo isset($car) ? $car['id'] : ''; ?>);
+                const addCarResult = await editCar(vehicleType, carModel, vehicleImmatriculation, carId);
                 if (addCarResult.success) {
                     alert("Votre véhicule a été modifié avec succès");
                 } else {

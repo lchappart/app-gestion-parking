@@ -33,12 +33,12 @@ export const fillCarsContainer = (carsContainer, carsResult) => {
             </td>
             <td>
                 <div class="car-actions">
-                    <button class="action-button edit-car" data-id="${car.id}" title="Modifier">
+                    <a href="index.php?component=addCar&action=edit&id=${car.id}" class="action-button edit-car" title="Modifier">
                         <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="action-button delete-car" data-id="${car.id}" title="Supprimer">
+                    </a>
+                    <a href="index.php?component=cars&action=delete&id=${car.id}" class="action-button delete-car" title="Supprimer">
                         <i class="fas fa-trash-alt"></i>
-                    </button>
+                    </a>
                 </div>
             </td>
         `;
