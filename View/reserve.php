@@ -1,5 +1,6 @@
 <div class="form-container reservation-container">
     <h1>Réserver une place</h1>
+    <p> Si l'heure de fin est avant celle de début, cela comptera comme le jour d'après</p>
     <form action="index.php?component=reserve" method="post" class="reservation-form">
         <div class="form-group">
             <label for="reservation-date">Date de réservation</label>
