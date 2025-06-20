@@ -35,7 +35,7 @@ Vous pouvez importer la base de données depuis le fichier ```parking_app.sql```
 ## 4. Connexion à la BDD
 Exécutez la commande suivante dans un terminal
 ```bash
-cp .env.dist .env*
+cp .env.dist .env
 nano .env
 ```
 Puis modifier le fichier avec vos informations
