@@ -43,15 +43,7 @@
 
     document.addEventListener('DOMContentLoaded', async () => {
         const addActionsListeners = () => {
-            const editCars = document.querySelectorAll('.edit-car');
             const deleteCars = document.querySelectorAll('.delete-car');
-
-            editCars.forEach(editButton => {
-                editButton.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.location.href = `index.php?component=addCar&action=edit&id=${e.target.dataset.id}`;
-                });
-            });
 
             deleteCars.forEach(deleteButton => {
                 deleteButton.addEventListener('click', async (e) => {
@@ -74,8 +66,8 @@
         const carsContainer = document.getElementById('cars-container');
         try {
             const carsResult = await getCars();
-            fillCarsContainer(carsContainer, carsResult);
-            addActionsListeners();
+            await fillCarsContainer(carsContainer, carsResult);
+            await addActionsListeners();
         } catch (error) {
             alert('Une erreur est survenue lors du chargement des véhicules.');
             console.error(error);

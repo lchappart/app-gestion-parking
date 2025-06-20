@@ -25,18 +25,16 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
             throw new Exception('Veuillez remplir tous les champs');
         }
 
-        // Validation des données
-        $reservationDate = filter_var($_POST['reservationDate'], FILTER_SANITIZE_STRING);
-        $startTime = filter_var($_POST['reservationStartTime'], FILTER_SANITIZE_STRING);
-        $endTime = filter_var($_POST['reservationEndTime'], FILTER_SANITIZE_STRING);
-        $vehicleSelect = filter_var($_POST['vehicleSelect'], FILTER_SANITIZE_STRING);
-        $price = filter_var($_POST['price'], FILTER_SANITIZE_STRING);
+        $reservationDate = cleanString($_POST['reservationDate']);
+        $startTime = cleanString($_POST['reservationStartTime']);
+        $endTime = cleanString($_POST['reservationEndTime']);
+        $vehicleSelect = cleanString($_POST['vehicleSelect']);
+        $price = cleanString($_POST['price']);
 
         if (!$reservationDate || !$startTime || !$endTime || !$vehicleSelect || !$price) {
             throw new Exception('Données invalides');
         }
 
-        // Vérification de la disponibilité des places
         $reservations = getReservationsAtDate($pdo, $reservationDate);
         if (count($reservations) >= $availablePlaces) {
             throw new Exception('Aucune place disponible à cette date');
